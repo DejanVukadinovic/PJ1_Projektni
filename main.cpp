@@ -130,8 +130,10 @@ int main() {
     std::string sgraph2 = graph2.serialize();
     //std::cout<<"===========================================================================\n";
     Graph<Tensor<double, 3,4,5>> graph3 = Graph<Tensor<double, 3,4,5>>::deserialize(sgraph);
-    //std::cout<<"===========================================================================\n";
-    graph3.print();
+    Graph<Tensor<double, 3,4,5>> graph4(sgraph);
+    std::string sgraph3 = graph4.serialize();
+    std::cout<<"===========================================================================\n";
+    std::cout<<sgraph3;
     //graph3.serialize();
 
     /*

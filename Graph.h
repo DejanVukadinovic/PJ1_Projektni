@@ -28,6 +28,69 @@ private:
     std::vector<Node<T>*> nodes;
     std::vector<std::vector<int>> rel;
 public:
+    Graph(){}
+    Graph(std::string s){
+        std::istringstream is(s);
+        std::string token;
+        std::vector<T> data;
+        std::getline(is, token, '\n');
+        for (int i = 0; i < std::stoi(token); ++i) {
+            std::cout<<"\nprocessing\n";
+            std::string nodeType;
+            std::getline(is, nodeType, '\n');
+            std::string initializator;
+            std::getline(is, initializator, '\n');
+            if(nodeType== typeid(Leaf<T>).name()){
+                std::cout<<"leaf\n";
+                std::cout<<initializator<<"\n";
+                Leaf<T>* tmp = new Leaf<T>(initializator);
+                std::cout<<tmp->serialize()<<"\n\n\n";
+                nodes.push_back(tmp);
+            }else if(nodeType == typeid(ScalarAdd<T>).name()){
+                std::cout<<"scalarAdd\n";
+                ScalarAdd<T>* tmp = new ScalarAdd<T>(std::stod(initializator));
+                nodes.push_back(tmp);
+            }else if(nodeType == typeid(HadamarMultiplication<T>).name()){
+                std::cout<<"hadamur\n";
+                HadamarMultiplication<T>* tmp = new HadamarMultiplication<T>;
+                nodes.push_back(tmp);
+
+            }else if(nodeType == typeid(ScalarMultiply<T>).name()){
+                std::cout<<"scalarMulti\n";
+                ScalarMultiply<T>* tmp = new ScalarMultiply<T>(std::stod(initializator));
+                nodes.push_back(tmp);
+
+            }else if(nodeType == typeid(TensorAddition<T>).name()){
+                std::cout<<"tensorAdd\n";
+                TensorAddition<T>* tmp = new TensorAddition<T>;
+                nodes.push_back(tmp);
+
+            }else if(nodeType == typeid(TensorInvert<T>).name()){
+                std::cout<<"TensorInvert\n";
+                TensorInvert<T>* tmp = new TensorInvert<T>;
+                nodes.push_back(tmp);
+
+            }
+            else if(nodeType == typeid(TensorSubtraction<T>).name()){
+                std::cout<<"TensorSubtraction\n";
+                TensorSubtraction<T>* tmp = new TensorSubtraction<T>;
+                nodes.push_back(tmp);
+
+            }
+            std::vector<int> tmp;
+
+            for(int i=0; i<nodes.size();i++){
+                tmp.push_back(0);
+                if(i!=nodes.size()-1){
+                    rel[i].push_back(0);
+                }
+            }
+            rel.push_back(tmp);
+            std::cout<<"145     "<<serialize()<<"\n\n";
+            std::cout<<"\n\n\n\n";
+        }
+    }
+
     void add(Node<T> &n){
         nodes.push_back(&n);
         std::vector<int> tmp;
