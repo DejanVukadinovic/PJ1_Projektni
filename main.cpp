@@ -124,6 +124,7 @@ int main() {
     graph2.add(tl);
     graph2.add(tl);
     graph2.add(tsa);
+    graph2.addRel(3,2);
     //std::cout<<"\n";
     //std::cout<<graph2.serialize();
     std::string sgraph = graph2.serialize();

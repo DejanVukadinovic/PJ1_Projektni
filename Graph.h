@@ -77,18 +77,21 @@ public:
                 nodes.push_back(tmp);
 
             }
-            std::vector<int> tmp;
 
-            for(int i=0; i<nodes.size();i++){
-                tmp.push_back(0);
-                if(i!=nodes.size()-1){
-                    rel[i].push_back(0);
-                }
-            }
-            rel.push_back(tmp);
             std::cout<<"145     "<<serialize()<<"\n\n";
             std::cout<<"\n\n\n\n";
         }
+        std::cout<<"84__        "<<nodes.size()<<"\n";
+        for (int i = 0; i < nodes.size(); ++i) {
+            std::vector<int> tmp;
+            std::getline(is, token, '\n');
+            for(int i=0; i<nodes.size();i++){
+                if(token[2*i]=='1')tmp.push_back(1);
+                else tmp.push_back(0);
+            }
+            rel.push_back(tmp);
+        }
+
     }
 
     void add(Node<T> &n){
